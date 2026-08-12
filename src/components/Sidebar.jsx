@@ -107,7 +107,7 @@ export default function Sidebar({ activeTab, setActiveTab, orgInfo, isOpen, setI
               <UserCheck className="w-3.5 h-3.5 text-amber-400" />
               ADMIN :
             </span>
-            <span className="text-white font-extrabold tracking-wide">JAYADI</span>
+            <span className="text-white font-extrabold tracking-wide">AJAY</span>
           </div>
 
           <div className="flex items-center justify-between font-mono text-[10px]">
