@@ -14,6 +14,9 @@ export DEBIAN_FRONTEND=noninteractive
 # Fix dpkg jika terputus
 sudo dpkg --configure -a 2>/dev/null || true
 
+# Fix error "repository cdrom no longer has a Release file" di Ubuntu
+sudo sed -i '/cdrom/d' /etc/apt/sources.list 2>/dev/null || true
+
 # Install Node.js, npm, nginx, git jika belum ada
 if ! command -v node &> /dev/null || ! command -v nginx &> /dev/null; then
     echo "Installing Node.js, NPM & Nginx..."
