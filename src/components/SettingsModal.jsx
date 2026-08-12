@@ -172,7 +172,7 @@ export default function SettingsModal({
                 </div>
 
                 <div>
-                  <label className="block text-emerald-300 font-semibold mb-1">PIN Mode Admin (Default: 0000)</label>
+                  <label className="block text-emerald-300 font-semibold mb-1">PIN Mode Admin</label>
                   <input
                     type="text"
                     maxLength="6"

@@ -51,9 +51,21 @@ const initDB = () => {
         "Budi Santoso", "Dewi Lestari", "Nadia Putri", "Eka Rahmawati",
         "Doni Setiawan", "Maya Kartika"
       ],
-      transactions: []
+      transactions: [],
+      adminPin: "0000"
     };
     fs.writeFileSync(DB_PATH, JSON.stringify(defaultData, null, 2), 'utf-8');
+  } else {
+    // Pastikan adminPin ada pada database yang sudah ada
+    try {
+      const existingData = JSON.parse(fs.readFileSync(DB_PATH, 'utf-8'));
+      if (existingData.adminPin === undefined) {
+        existingData.adminPin = "0000";
+        fs.writeFileSync(DB_PATH, JSON.stringify(existingData, null, 2), 'utf-8');
+      }
+    } catch (e) {
+      console.error(e);
+    }
   }
 };
 initDB();

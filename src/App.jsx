@@ -85,10 +85,7 @@ export default function App() {
   });
 
   // Admin PIN State (Default: '0000')
-  const [adminPin, setAdminPin] = useState(() => {
-    const saved = localStorage.getItem('pulorida_admin_pin');
-    return saved || '0000';
-  });
+  const [adminPin, setAdminPin] = useState('0000');
 
   // Balance Visibility Toggle
   const [showBalance, setShowBalance] = useState(true);
@@ -109,6 +106,7 @@ export default function App() {
         if (data.categories) setCategories(data.categories);
         if (data.pjs) setPjs(data.pjs);
         if (data.transactions) setTransactions(data.transactions);
+        if (data.adminPin !== undefined) setAdminPin(data.adminPin);
         setIsLoading(false);
       })
       .catch(err => {
@@ -134,10 +132,6 @@ export default function App() {
     }
   }, [userRole, activeTab]);
 
-  useEffect(() => {
-    localStorage.setItem('pulorida_admin_pin', adminPin);
-  }, [adminPin]);
-
   // Sync data changes to Server
   const isInitialMount = useRef(true);
   useEffect(() => {
@@ -149,10 +143,10 @@ export default function App() {
       fetch('/api/data', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ orgInfo, categories, pjs, transactions })
+        body: JSON.stringify({ orgInfo, categories, pjs, transactions, adminPin })
       }).catch(err => console.error("Gagal menyimpan data ke server:", err));
     }
-  }, [orgInfo, categories, pjs, transactions, isLoading]);
+  }, [orgInfo, categories, pjs, transactions, adminPin, isLoading]);
 
   // Financial Calculations (DYNAMIC & ACCURATE)
   const totalIncome = transactions

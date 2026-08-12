@@ -163,7 +163,7 @@ export default function Header({
                 />
                 {pinError && (
                   <p className="text-[11px] text-rose-400 mt-1.5 text-center font-semibold">
-                    PIN Salah! Default PIN: 0000
+                    PIN Salah!
                   </p>
                 )}
               </div>
